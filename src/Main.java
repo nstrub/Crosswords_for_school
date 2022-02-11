@@ -10,8 +10,8 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         Boggle bog = new Boggle(4);
         BorderPane root = new BorderPane();
-        //root.setBottom(new VueInfo(bog)); class pas encore crée
-        //root.setCenter(new VueLettres(bog)) ; class pas encore crée
+        //root.setBottom(new VueInfo(bog)); plus tard...
+        //root.setCenter(new VueLettres(bog)) ; en cours...
         //root.setRight(new PanneauControle(bog)) ; class pas encore crée
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
