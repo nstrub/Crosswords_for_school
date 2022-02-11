@@ -1,5 +1,6 @@
 package boggle.model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Boggle  {
@@ -10,6 +11,7 @@ public class Boggle  {
     private StringBuilder mot;
     private int score = 0;
     private int ligneChoisie, colonneChoisie ;  // dernière case choisie
+    private ArrayList<Observateur> obs = new ArrayList<>(10);
 
 
     /**
@@ -87,6 +89,7 @@ public class Boggle  {
         else
             this.score -= 1 ;
         this.mot = new StringBuilder("");
+        this.notifierObservateurs();
     }
 
     /**
@@ -114,7 +117,14 @@ public class Boggle  {
     }
 
     public void ajouterObservateur(Observateur obs){
-        
+        this.obs.add(obs);
+    }
+    
+    public void notifierObservateurs(){
+        for (Observateur o: obs
+             ) {
+            o.reagir();
+        };
     }
 
 
