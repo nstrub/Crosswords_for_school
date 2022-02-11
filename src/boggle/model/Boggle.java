@@ -113,5 +113,9 @@ public class Boggle  {
         }
     }
 
+    public void ajouterObservateur(Observateur obs){
+        
+    }
+
 
 }
