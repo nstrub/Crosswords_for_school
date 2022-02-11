@@ -5,11 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 
+import java.util.ArrayList;
+
 public class VueLettres extends TilePane implements Observateur{
-    private Button[] bou;
+    private ArrayList<Button> boutons;
 
     public VueLettres(Boggle bog){
-        int nbBouton = bog.getTaille();
+        int nbBouton = bog.getTaille(); //a mettre au carré
         for(int i = 0; i < nbBouton; i++){
 
         }
