@@ -2,6 +2,7 @@ package boggle.model.vue;
 import boggle.model.Boggle;
 import boggle.model.Observateur;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
@@ -23,13 +24,16 @@ public class VueLettres extends GridPane implements Observateur{
             for(int j = 0; j < nbBouton; j++){
                 boutempo = new Button();
                 boutempo.setText(String.valueOf(bog.getLettre(j,i)));
+                boutempo.setMinSize(60,60);
                 boutons.add(boutempo);
                 this.add(boutempo,i,j);
+
             }
         }
         this.setPadding(new Insets(10));
-
-
+        this.setHgap(5);
+        this.setVgap(5);
+        this.setAlignment(Pos.CENTER);
     }
 
     @Override
