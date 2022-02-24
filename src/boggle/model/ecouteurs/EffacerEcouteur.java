@@ -13,5 +13,6 @@ public class EffacerEcouteur implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         bog.effacer();
+        bog.notifierObservateurs();
     }
 }
