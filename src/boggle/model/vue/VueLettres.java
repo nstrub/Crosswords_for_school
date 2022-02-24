@@ -30,7 +30,7 @@ public class VueLettres extends GridPane implements Observateur{
                 boutempo.setMinSize(60,60);
                 boutons.add(boutempo);
                 this.add(boutempo,i,j);
-                ecouteur = new LettreEcouteur(this.bog,i,j);
+                ecouteur = new LettreEcouteur(this.bog,j,i);
                 boutempo.setOnAction(ecouteur);
                 bog.notifierObservateurs();
             }

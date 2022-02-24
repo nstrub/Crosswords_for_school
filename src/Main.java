@@ -26,18 +26,11 @@ public class Main extends Application {
         //VueInfo
         root.setBottom(new VueInfo(bog));
 
-        //PanneauControle?
         //root.setRight(new PanneauControle(bog)) ; class pas encore crée
 
         //Ecran
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
-
-        //Bouton pour quitter
-        Button boutonQuit = new Button("QUIT");
-        boutonQuit.setOnAction(new QuitEcouteur());
-        boutonQuit.setMinSize(30,30);
-        root.setLeft(boutonQuit);
 
     }
 
