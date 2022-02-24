@@ -1,8 +1,15 @@
 import boggle.model.Boggle;
+import boggle.model.ecouteurs.QuitEcouteur;
+import boggle.model.vue.VueInfo;
 import boggle.model.vue.VueLettres;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -12,10 +19,26 @@ public class Main extends Application {
         Boggle bog = new Boggle(4);
         BorderPane root = new BorderPane();
         //root.setBottom(new VueInfo(bog)); plus tard...
+
+        //Grille
         root.setCenter(new VueLettres(bog)) ; //en cours..
+
+        //VueInfo
+        root.setBottom(new VueInfo(bog));
+
+        //PanneauControle?
         //root.setRight(new PanneauControle(bog)) ; class pas encore crée
+
+        //Ecran
         primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
+
+        //Bouton pour quitter
+        Button boutonQuit = new Button("QUIT");
+        boutonQuit.setOnAction(new QuitEcouteur());
+        boutonQuit.setMinSize(30,30);
+        root.setLeft(boutonQuit);
+
     }
 
     public static void main(String[] args){

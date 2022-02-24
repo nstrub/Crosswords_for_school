@@ -1,5 +1,7 @@
 package boggle.model;
 
+import boggle.model.vue.VueInfo;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,6 +14,7 @@ public class Boggle  {
     private int score = 0;
     private int ligneChoisie, colonneChoisie ;  // dernière case choisie
     private ArrayList<Observateur> obs = new ArrayList<>(10);
+    private VueInfo vueInfo;
 
 
     /**
@@ -113,6 +116,7 @@ public class Boggle  {
             this.mot.append(this.getLettre(lig, col));
             this.ligneChoisie = lig;
             this.colonneChoisie = col;
+            this.vueInfo.reagir();
         }
     }
 
@@ -127,5 +131,7 @@ public class Boggle  {
         };
     }
 
-
+    public void setVueInfo(VueInfo vueInfo) {
+        this.vueInfo = vueInfo;
+    }
 }

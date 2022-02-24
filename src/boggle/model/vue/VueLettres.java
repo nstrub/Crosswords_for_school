@@ -1,6 +1,8 @@
 package boggle.model.vue;
 import boggle.model.Boggle;
 import boggle.model.Observateur;
+import boggle.model.ecouteurs.LettreEcouteur;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class VueLettres extends GridPane implements Observateur{
     private ArrayList<Button> boutons;
     private Boggle bog;
+    private LettreEcouteur ecouteur;
 
     public VueLettres(Boggle bog){
         boutons = new ArrayList<>();
@@ -27,7 +30,9 @@ public class VueLettres extends GridPane implements Observateur{
                 boutempo.setMinSize(60,60);
                 boutons.add(boutempo);
                 this.add(boutempo,i,j);
-
+                ecouteur = new LettreEcouteur(this.bog,i,j);
+                boutempo.setOnAction(ecouteur);
+                bog.notifierObservateurs();
             }
         }
         this.setPadding(new Insets(10));
