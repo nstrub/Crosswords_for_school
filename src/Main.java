@@ -1,5 +1,6 @@
 import boggle.model.Boggle;
 import boggle.model.ecouteurs.QuitEcouteur;
+import boggle.model.vue.PanneauControle;
 import boggle.model.vue.VueInfo;
 import boggle.model.vue.VueLettres;
 import javafx.application.Application;
@@ -18,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         Boggle bog = new Boggle(4);
         BorderPane root = new BorderPane();
-        //root.setBottom(new VueInfo(bog)); plus tard...
+        root.setBottom(new VueInfo(bog));
 
         //Grille
         root.setCenter(new VueLettres(bog)) ; //en cours..
@@ -26,7 +27,7 @@ public class Main extends Application {
         //VueInfo
         root.setBottom(new VueInfo(bog));
 
-        //root.setRight(new PanneauControle(bog)) ; class pas encore crée
+        root.setRight(new PanneauControle(bog)) ;
 
         //Ecran
         primaryStage.setScene(new Scene(root, 1000, 700));
