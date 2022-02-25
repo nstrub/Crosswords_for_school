@@ -93,6 +93,7 @@ public class Boggle  {
             this.score -= 1 ;
         this.mot = new StringBuilder("");
         this.notifierObservateurs();
+        this.effacer();
     }
 
     /**

@@ -23,12 +23,15 @@ public class VueInfo extends TilePane implements Observateur {
         bog.setVueInfo(this);
         this.bog.ajouterObservateur(this);
         lettreChoisie = new ArrayList<>();
-        motChoisi = new Label("motChoisi : " + bog.getMotChoisi());
+        motChoisi = new Label("Ton mot : " + bog.getMotChoisi());
         motChoisi.setFont(new Font(20));
-        setMinSize(300,100);
+        this.setMinSize(300,100);
+
+        score = new Label("Score : " + bog.getScore());
+        score.setFont(new Font(20));
 
         this.setAlignment(Pos.CENTER);
-        this.getChildren().addAll(motChoisi);
+        this.getChildren().addAll(motChoisi,score);
 
         //Boite sur le coté avec lettre
         VBox boiteGauche = new VBox();
@@ -38,6 +41,7 @@ public class VueInfo extends TilePane implements Observateur {
 
     @Override
     public void reagir() {
-        motChoisi.setText("motChoisi : " + bog.getMotChoisi());
+        motChoisi.setText("Ton mot : " + bog.getMotChoisi() + " ");
+        score.setText("Score : " + bog.getScore());
     }
 }

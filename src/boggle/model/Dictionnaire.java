@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dictionnaire {
-    private static Dictionnaire instance = new Dictionnaire("../ressources/dico.txt") ;
+    private static Dictionnaire instance = new Dictionnaire("/dico.txt") ;
     private ArrayList<String> dico ;
 
     /**
