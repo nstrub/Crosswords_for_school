@@ -15,7 +15,7 @@ public class Boggle  {
     private int ligneChoisie, colonneChoisie ;  // dernière case choisie
     private ArrayList<Observateur> obs = new ArrayList<>(10);
     private VueInfo vueInfo;
-    private ArrayList<String> motsValides = new ArrayList<>(20);
+    private ArrayList<String> motsValides;
 
 
     /**
@@ -34,8 +34,9 @@ public class Boggle  {
                     lettres[lig][col] = consonnes[gen.nextInt(20)];
 
         this.mot = new StringBuilder("");
+        this.motsValides = new ArrayList<>(10);
         this.ligneChoisie = -1 ;
-        this.colonneChoisie = -1 ;
+        this.colonneChoisie = -1;
     }
 
     /**
@@ -88,22 +89,34 @@ public class Boggle  {
      */
     public void valider() {
         Dictionnaire dico = Dictionnaire.getInstance() ;
-        if (dico.contient(mot.toString())){
+        if (dico.contient(mot.toString()) && nonDejavu(mot.toString())){
             this.score += this.mot.length() ;
-            this.motsValides.add("- " + this.mot);
+            this.motsValides.add(this.mot.toString());
         }
         else
             this.score -= 1 ;
         this.mot = new StringBuilder("");
-        this.notifierObservateurs();
         this.effacer();
+        this.notifierObservateurs();
     }
 
     /**
      * Construit la liste des mots valides à afficher
      */
-    public String afficherValide(){
-        return this.motsValides.toString();
+    public String getMotsValides(){
+        StringBuilder mots = new StringBuilder();
+        for(String mot: motsValides){
+            mots.append("~ " + mot);
+            mots.append("\n");
+        }
+        return mots.toString();
+    }
+
+    public boolean nonDejavu(String mot){
+        if(motsValides.contains(mot)){
+            return false;
+        }
+        return true;
     }
 
     /**

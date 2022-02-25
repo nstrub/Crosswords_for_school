@@ -5,12 +5,13 @@ import boggle.model.Observateur;
 import boggle.model.ecouteurs.EffacerEcouteur;
 import boggle.model.ecouteurs.QuitEcouteur;
 import boggle.model.ecouteurs.ValiderEcouteur;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 
-public class PanneauControle extends TilePane implements Observateur{
+public class PanneauControle extends VBox implements Observateur{
 //connait model info et lettre (boggle)
 
     private Button valider;
@@ -33,6 +34,9 @@ public class PanneauControle extends TilePane implements Observateur{
         //Pour les afficher...
         this.getChildren().addAll(valider,effacer,quitter);
         this.setAlignment(Pos.CENTER);
+        this.setPadding(new Insets(5));
+        this.setSpacing(4);
+
 
         valider.setMinSize(100,40);
         valider.setMaxSize(100,40);
@@ -45,6 +49,7 @@ public class PanneauControle extends TilePane implements Observateur{
         quitter.setMinSize(100,40);
         quitter.setMaxSize(100,40);
         quitter.setStyle("-fx-base:#9a0000; -fx-background-radius:70");
+
 
     }
 
