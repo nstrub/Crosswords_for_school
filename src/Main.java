@@ -3,6 +3,7 @@ import boggle.model.ecouteurs.QuitEcouteur;
 import boggle.model.vue.PanneauControle;
 import boggle.model.vue.VueInfo;
 import boggle.model.vue.VueLettres;
+import boggle.model.vue.VueTrouve;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,14 +25,13 @@ public class Main extends Application {
         ImageView bkg = new ImageView(background);
         root.getChildren().add(bkg);
 
-        root.setBottom(new VueInfo(bog));
 
         //Grille
-        root.setCenter(new VueLettres(bog)) ; //en cours..
-
+        root.setCenter(new VueLettres(bog)) ;
+        root.setLeft(new VueTrouve(bog));
         //VueInfo
         root.setBottom(new VueInfo(bog));
-
+        //PanneauControl
         root.setRight(new PanneauControle(bog)) ;
 
         //Ecran

@@ -15,6 +15,7 @@ public class Boggle  {
     private int ligneChoisie, colonneChoisie ;  // dernière case choisie
     private ArrayList<Observateur> obs = new ArrayList<>(10);
     private VueInfo vueInfo;
+    private ArrayList<String> motsValides = new ArrayList<>(20);
 
 
     /**
@@ -87,13 +88,22 @@ public class Boggle  {
      */
     public void valider() {
         Dictionnaire dico = Dictionnaire.getInstance() ;
-        if (dico.contient(mot.toString()))
+        if (dico.contient(mot.toString())){
             this.score += this.mot.length() ;
+            this.motsValides.add("- " + this.mot);
+        }
         else
             this.score -= 1 ;
         this.mot = new StringBuilder("");
         this.notifierObservateurs();
         this.effacer();
+    }
+
+    /**
+     * Construit la liste des mots valides à afficher
+     */
+    public String afficherValide(){
+        return this.motsValides.toString();
     }
 
     /**

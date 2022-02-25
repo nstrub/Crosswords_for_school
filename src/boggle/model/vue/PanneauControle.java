@@ -36,7 +36,7 @@ public class PanneauControle extends TilePane implements Observateur{
 
         valider.setMinSize(100,40);
         valider.setMaxSize(100,40);
-        valider.setStyle("-fx-base:#009a88; -fx-background-radius:70");
+        valider.setStyle("-fx-base:#2c9a00; -fx-background-radius:70");
 
         effacer.setMinSize(100,40);
         effacer.setMaxSize(100,40);
