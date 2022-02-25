@@ -21,9 +21,6 @@ public class Main extends Application {
         Boggle bog = new Boggle(4);
         BorderPane root = new BorderPane();
         //arrière plan
-        //Image background = new Image("/background.jpg",1000,700,false,true,true);
-        //ImageView bkg = new ImageView(background);
-        //root.getChildren().add(bkg);
 
 
         //Grille
