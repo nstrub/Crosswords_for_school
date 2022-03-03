@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dictionnaire {
-    private static Dictionnaire instance = new Dictionnaire("/dico.txt") ;
+    private static Dictionnaire instancefr = new Dictionnaire("/francais.txt") ;
+    private static Dictionnaire instanceeng = new Dictionnaire("/anglais.txt") ;
+
     private ArrayList<String> dico ;
 
     /**
@@ -14,7 +16,7 @@ public class Dictionnaire {
      * @param s nom de fichier
      */
     private  Dictionnaire(String s) {
-        this.dico = new ArrayList<String>(4000) ;
+        this.dico = new ArrayList<String>() ;
         InputStream file = getClass().getResourceAsStream(s);
         Scanner sc = new Scanner(file);
         while (sc.hasNext())
@@ -24,9 +26,13 @@ public class Dictionnaire {
     /**
      * @return dictionnaire de la langue française
      */
-    public static Dictionnaire getInstance() {
-        return instance ;
+    public static Dictionnaire getInstancefr() {
+        return instancefr ;
     }
+    public static Dictionnaire getInstanceeng() {
+        return instanceeng ;
+    }
+
 
     /**
      * @param s

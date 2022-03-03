@@ -1,21 +1,26 @@
 package boggle.model;
 
 import boggle.model.vue.VueInfo;
+import boggle.model.vue.VueLettres;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Boggle  {
 
-    private static char[] voyelles = {'A', 'E', 'I', 'O', 'U', 'Y'};
+    private static char[] voyelles = {'A',  'E', 'I', 'O', 'U', 'Y'};
     private static char[] consonnes = {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z'};
+    private static char[] accent = {'Â', 'É', 'È', 'Ê', 'Ç'};
     private char[][] lettres;
     private StringBuilder mot;
     private int score = 0;
     private int ligneChoisie, colonneChoisie ;  // dernière case choisie
     private ArrayList<Observateur> obs = new ArrayList<>(10);
     private VueInfo vueInfo;
+    private VueLettres vueLettres;
     private ArrayList<String> motsValides;
+    private boolean resetGrille;
+    private boolean francais;
 
 
     /**
@@ -23,12 +28,20 @@ public class Boggle  {
      * @param taille
      */
     public Boggle(int taille) {
+        resetGrille = false;
+        francais = true;
         this.lettres = new char[taille][taille];
         Random gen = new Random();
+        int rand = gen.nextInt(6);
         for (int lig = 0; lig < taille; lig++)
             if (lig%2==0)
-                for (int col = 0; col < taille; col++)
-                    lettres[lig][col] = voyelles[gen.nextInt(6)];
+                for (int col = 0; col < taille; col++){
+                    if(rand == 4){
+                        lettres[lig][col] = accent[gen.nextInt(6)];
+                    }
+                    else{
+                        lettres[lig][col] = voyelles[gen.nextInt(6)];}
+                    }
             else
                 for (int col = 0; col < taille; col++)
                     lettres[lig][col] = consonnes[gen.nextInt(20)];
@@ -37,6 +50,46 @@ public class Boggle  {
         this.motsValides = new ArrayList<>(10);
         this.ligneChoisie = -1 ;
         this.colonneChoisie = -1;
+    }
+
+    public void nouvellePartie(int taille){
+        this.lettres = new char[taille][taille];
+        Random gen = new Random();
+        int rand = gen.nextInt(6);
+        for (int lig = 0; lig < taille; lig++)
+            if (lig%2==0)
+                for (int col = 0; col < taille; col++){
+                    lettres[lig][col] = voyelles[gen.nextInt(6)];}
+            else
+                for (int col = 0; col < taille; col++)
+                    lettres[lig][col] = consonnes[gen.nextInt(20)];
+        this.mot = new StringBuilder("");
+        this.motsValides = new ArrayList<>(10);
+        this.ligneChoisie = -1 ;
+        this.colonneChoisie = -1;
+        this.score = 0;
+        resetGrille = true;
+    }
+
+    public void languageChoisi(int lang){   //0 ==> Francais ; 1 ==> Anglais
+        if(lang == 0){
+            this.francais = true;
+        }
+        else{
+            this.francais = false;
+        }
+    }
+
+    public boolean getLanguage(){
+        return francais; //vrai : fr OU faux : eng
+    }
+
+    public boolean getResetGrille(){
+        return resetGrille;
+    }
+
+    public void setResetGrille(boolean bool){
+        resetGrille = bool;
     }
 
     /**
@@ -88,7 +141,14 @@ public class Boggle  {
      * sinon, le score est décrementé de 1
      */
     public void valider() {
-        Dictionnaire dico = Dictionnaire.getInstance() ;
+        Dictionnaire dico;
+        if(francais){
+            dico = Dictionnaire.getInstancefr() ;
+
+        }
+        else{
+            dico = Dictionnaire.getInstanceeng() ;
+        }
         if (dico.contient(mot.toString()) && nonDejavu(mot.toString())){
             this.score += this.mot.length() ;
             this.motsValides.add(this.mot.toString());
@@ -158,4 +218,11 @@ public class Boggle  {
     public void setVueInfo(VueInfo vueInfo) {
         this.vueInfo = vueInfo;
     }
+
+    public void setVueLettres(VueLettres vue){
+        this.vueLettres = vue;
+    }
+
+
+
 }

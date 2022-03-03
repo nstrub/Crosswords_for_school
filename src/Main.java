@@ -1,13 +1,11 @@
 import boggle.model.Boggle;
 import boggle.model.ecouteurs.QuitEcouteur;
-import boggle.model.vue.PanneauControle;
-import boggle.model.vue.VueInfo;
-import boggle.model.vue.VueLettres;
-import boggle.model.vue.VueTrouve;
+import boggle.model.vue.*;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -24,12 +22,15 @@ public class Main extends Application {
 
 
         //Grille
-        root.setCenter(new VueLettres(bog)) ;
+        VueLettres vuvu = new VueLettres(bog);
+        root.setCenter(vuvu);
         root.setLeft(new VueTrouve(bog));
         //VueInfo
         root.setBottom(new VueInfo(bog));
         //PanneauControl
         root.setRight(new PanneauControle(bog)) ;
+        //Menu déroulant
+        root.setTop(new VueMenu(bog));
 
         //Ecran
         primaryStage.setTitle("BOGGLE");
