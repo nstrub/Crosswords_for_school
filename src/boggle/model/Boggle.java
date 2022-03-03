@@ -37,7 +37,7 @@ public class Boggle  {
             if (lig%2==0)
                 for (int col = 0; col < taille; col++){
                     if(rand == 4){
-                        lettres[lig][col] = accent[gen.nextInt(6)];
+                        lettres[lig][col] = accent[gen.nextInt(5)];
                     }
                     else{
                         lettres[lig][col] = voyelles[gen.nextInt(6)];}
